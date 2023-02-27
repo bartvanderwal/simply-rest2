@@ -9,4 +9,10 @@ public class UserService {
         // TODO login met echt paswoord check.
         return UUID.randomUUID().toString();
     }
+
+    public String healthy() {
+
+        return "Up & Running";
+    }
+
 }
