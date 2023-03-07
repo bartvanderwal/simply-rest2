@@ -18,7 +18,7 @@ class HealthCheckResourceTest {
         var expected = new HealthStatusDTO("Up & Running", true);
         var mockedUserService = Mockito.mock(nl.han.dea.UserService.class);
         sut.setUserService(mockedUserService);
-        Mockito.when(sut.healthy()).thenReturn(Response.ok().entity(expected).build());
+        Mockito.when(sut.healthy()).thenReturn(expected);
 
         // Act
         var actual = sut.healthy();
