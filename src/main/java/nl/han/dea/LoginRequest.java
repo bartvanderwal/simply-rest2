@@ -1,4 +1,4 @@
-package nl.han;
+package nl.han.dea;
 
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.POST;

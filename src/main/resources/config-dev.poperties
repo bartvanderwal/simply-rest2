@@ -1,0 +1,2 @@
+dbFolder=dev
+connectionString=jdbc:sqlserv

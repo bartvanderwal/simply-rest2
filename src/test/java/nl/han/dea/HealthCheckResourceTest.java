@@ -1,7 +1,10 @@
 package nl.han.dea;
 
+import jakarta.ws.rs.core.Response;
+import nl.han.dea.crosscuttingconcerns.dto.HealthStatusDTO;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mockito;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,7 +15,10 @@ class HealthCheckResourceTest {
     @Test
     public void test() {
         // Arrange
-        var expected = "Up & Running";
+        var expected = new HealthStatusDTO("Up & Running", true);
+        var mockedUserService = Mockito.mock(nl.han.dea.UserService.class);
+        sut.setUserService(mockedUserService);
+        Mockito.when(sut.healthy()).thenReturn(Response.ok().entity(expected).build());
 
         // Act
         var actual = sut.healthy();
