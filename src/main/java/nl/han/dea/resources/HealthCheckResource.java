@@ -1,37 +1,34 @@
-package nl.han.dea;
+package nl.han.dea.resources;
 
 import jakarta.inject.Inject;
 import jakarta.ws.rs.*;
-import jakarta.ws.rs.core.MediaType;
 
+import nl.han.dea.IUserService;
 import nl.han.dea.crosscuttingconcerns.dto.HealthStatusDTO;
 
 @Path("/health")
 public class HealthCheckResource {
 
 
-    private UserService userService; // new UserService();
+    private IUserService userService; // new UserService();
 
     @Inject
-    public void setUserService(UserService userService) {
+    public void setUserService(IUserService userService) {
         System.out.println("HealthCheckResource: Setter aangeroepen (inject?).");
         this.userService = userService;
     }
 
     @GET
-    @Produces(MediaType.APPLICATION_JSON)
-    public HealthStatusDTO healthy() {
+    // @Produces(MediaType.TEXT_PLAIN)
+    public String healthy() {
 
         // Gebruik van UserService.healthy();
         var result = new HealthStatusDTO();
-        var response =
+
         result.status = userService.healthy();
         result.errorOccurred = false;
-        return result;
-
+        return result.status;
     }
-
-
 
 
 }
